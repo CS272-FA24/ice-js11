@@ -1,138 +1,51 @@
-
-const NAME_REGEX = /[a-zA-Z ]+/;
-const EMAIL_REGEX = /^[a-zA-Z0-9-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}$/;
-
-let numEmail = 0;
-let emailNodes = [];
+const NAMES = ["Jessie", "Jackson", "Ben", "Kyle", "Gabby", "Jill"];
+const NUMS = [2, 5, 6, 8, 19, 22, 27];
 
 /**
- * Called whenever the "Add Email" button is pressed.
- * Adds the given email to the DOM, as well as a button
- * to remove itself from the DOM.
+ * Prints out each name on a new line
  */
-function addEmailToDOM() {
-    const emailInputsNode = document.getElementById("email-inputs");
+function logNames() {
 
-    const newDivNode = document.createElement("div");
-    newDivNode.id = `email-div-${numEmail}`;
-    newDivNode.className = "mb-2"
-
-    const newLabelNode = document.createElement("label");
-    newLabelNode.innerText = 'Please enter your email...';
-    newLabelNode.for = `email-input-${numEmail}`;
-
-    const newInnerDivNode = document.createElement("div");
-    newInnerDivNode.style.display = "flex"
-
-    const newInputNode = document.createElement("input");
-    newInputNode.id = `email-input-${numEmail}`;
-    newInputNode.className = 'form-control mb-2';
-    newInputNode.placeholder = 'Type your email here...';
-    newInputNode.style.maxWidth = '25em';
-
-    const newRemoveButtonNode = document.createElement("button");
-    newRemoveButtonNode.className = 'btn btn-danger ms-2';
-    newRemoveButtonNode.style.height = "fit-content";
-    newRemoveButtonNode.innerText = 'Remove';
-
-    const newErrorTextNode = document.createElement("p");
-    newErrorTextNode.id = `email-error-text-${numEmail}`;
-    newErrorTextNode.style.color = "red";
-
-    newInnerDivNode.appendChild(newInputNode);
-    newInnerDivNode.appendChild(newRemoveButtonNode);
-
-    newDivNode.appendChild(newLabelNode);
-    newDivNode.appendChild(newInnerDivNode);
-    newDivNode.appendChild(newErrorTextNode);
-    
-    emailInputsNode.appendChild(newDivNode);
-
-    emailNodes.push(newDivNode);
-    numEmail++;
 }
 
 /**
- * Called whenever the "Validate" button is pressed.
- * Checks whether the given name and email(s) are valid.
- * If they are invalid, it will set the error text elements.
- * Otherwise, it will reset the error text elements.
+ * Prints out the list of each person's first initial
  */
-function validate() {
-    let wasFormValid = true;
+function logFirstInitial() {
 
-    // Perform name validation
-    wasFormValid = wasFormValid && validateInput(NAME_REGEX, "pii-name", "pii-name-error-text", "Please enter a valid name!");
-
-    // Perform email validation
-    for (let i = 0; i < emailNodes.length; i++) {
-        let currNode = emailNodes[i];
-        const inpId = getInputIdEmailNode(currNode);
-        const errTxtId = getErrorTextIdEmailNode(currNode);
-
-        // This is currently doing something called "short-circuiting!"
-        wasFormValid = wasFormValid && validateInput(EMAIL_REGEX, inpId, errTxtId, "This email address is invalid!");
-    }
-
-    // Require at least 1 email address.
-    wasFormValid = wasFormValid && emailNodes.length > 0;
-    
-    if (wasFormValid) {
-        alert("Success!");
-    } else {
-        alert("Please check your form again.");
-    }
 }
 
 /**
- * This function will validate a particular input given a regular
- * expression and set or reset any error text that may exist.
- * The function returns the result of its finding.
- * 
- * @param {RegExp} regex validation regex
- * @param {string} inputId id of the input element
- * @param {string} errTxtId id of the error text element
- * @param {string} errText text to display if invalid
- * @returns {boolean} true if input is valid, false otherwise
+ * Prints out the list of each person's name length
  */
-function validateInput(regex, inputId, errTxtId, errText) {
-    const inputNode = document.getElementById(inputId);
-    const errorTextNode = document.getElementById(errTxtId);
+function logLengthOfName() {
 
-    if (regex.test(inputNode.value)) {
-        inputNode.className = "form-control";
-        errorTextNode.innerText = "";
-        return true;
-    } else {
-        inputNode.className = "form-control is-invalid";
-        errorTextNode.innerText = errText;
-        return false;
-    }
 }
 
 /**
- * Gets the value of the input from the given email div
- * @param {HTMLElement} node the specific email div
- * @returns {string} the value of the given input field
+ * Prints out the list of people who's name starts with J.
  */
-function getInputValueFromEmailNode(node) {
-    return node.getElementsByTagName("input")[0].value;
+function logJNames() {
+
 }
 
 /**
- * Gets the id of the input from the given email div
- * @param {HTMLElement} node the specific email div
- * @returns {string} the id of the given input field
+ * Prints out the list of people who's name starts with J and have a long name (>= 5 characters)
  */
-function getInputIdEmailNode(node) {
-    return node.getElementsByTagName("input")[0].id;
+function logLongJNames() {
+
 }
 
 /**
- * Gets the id of the input from the given email div
- * @param {HTMLElement} node the specific email div
- * @returns {string} the id of the given input field
+ * Prints out whether or not there is a 7 in the list of numbers
  */
-function getErrorTextIdEmailNode(node) {
-    return node.getElementsByTagName("p")[0].id;
+function isThere7() {
+
+}
+
+/**
+ * Prints out whether or not each number is positive.
+ */
+function isAllPositive() {
+
 }
